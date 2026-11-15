@@ -1,15 +1,15 @@
 # Trabalho (P2): Simulador Visual Interativo, Implementação e Explicação Técnica
 
 - **Disciplina:** Estrutura de Dados
-- **Curso:** Análise e Desenvolvimento de Sistemas (ADS) — Fatec Ribeirão Preto[cite: 1]
-- **Professor:** Eduardo Cruz Araujo[cite: 1]
+- **Curso:** Análise e Desenvolvimento de Sistemas (ADS) — Fatec Ribeirão Preto
+- **Professor:** Eduardo Cruz Araujo
 - **Aluno:** Lucas de Souza Sturari
-- **Tema Escolhido:** Tema A — Ordenação Dividir-para-Conquistar: Quick Sort vs. Merge Sort[cite: 2]
+- **Tema Escolhido:** Tema A — Ordenação Dividir-para-Conquistar: Quick Sort vs. Merge Sort
 
 ---
 
 ## 🔗 Link do Vídeo Explicativo
-> *[Cole o link do seu vídeo do YouTube "Não Listado" ou Google Drive aqui assim que gravar]*
+> 
 
 ---
 
