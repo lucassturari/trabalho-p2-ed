@@ -3,22 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Simulador Visual - Quick Sort vs Merge Sort (Fatec)</title>
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f6f9; margin: 0; padding: 20px; color: #333; }
-        .container { max-width: 900px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        h1 { color: #0284c7; font-size: 24px; text-align: center; }
-        .controls { display: flex; gap: 10px; justify-content: center; margin: 20px 0; flex-wrap: wrap; }
-        button { padding: 10px 15px; border: none; border-radius: 5px; background: #0284c7; color: white; cursor: pointer; font-weight: bold; }
-        button:hover { background: #0369a1; }
-        button.secondary { background: #64748b; }
-        button.secondary:hover { background: #475569; }
-        .metrics { display: flex; justify-content: space-around; background: #e0f2fe; padding: 10px; border-radius: 5px; font-weight: bold; margin-bottom: 20px; }
-        .canvas-container { display: flex; align-items: flex-end; justify-content: center; height: 250px; border-bottom: 3px solid #333; gap: 6px; padding: 10px; background: #f8fafc; margin-bottom: 20px; }
-        .bar { width: 35px; background: #38bdf8; display: flex; align-items: flex-end; justify-content: center; color: white; font-size: 12px; font-weight: bold; border-radius: 4px 4px 0 0; transition: height 0.3s; }
-        .bar.pivot { background: #f59e0b; } /* Destaca o pivô do Quick Sort */
-        .bar.comparing { background: #ef4444; } /* Destaca elementos comparados */
-        .log-box { background: #1e293b; color: #38bdf8; padding: 15px; border-radius: 5px; height: 100px; overflow-y: auto; font-family: monospace; font-size: 14px; }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -49,80 +34,6 @@
     <div class="log-box" id="log">Simulador pronto. Escolha um cenário e clique em Próximo Passo.</div>
 </div>
 
-<script>
-    let arrayOriginal = [40, 10, 30, 50, 20, 70, 60];
-    let array = [...arrayOriginal];
-    let comparacoes = 0;
-    let trocas = 0;
-    let algoritmoAtual = 'quicksort';
-
-    function atualizarVisual(pivotIndex = -1, comparingIndices = []) {
-        const canvas = document.getElementById('canvas');
-        canvas.innerHTML = '';
-        const maxVal = Math.max(...array, 10);
-        
-        arrayforEach = array.forEach((val, idx) => {
-            const bar = document.createElement('div');
-            bar.className = 'bar';
-            bar.style.height = `${(val / maxVal) * 200}px`;
-            bar.innerText = val;
-            
-            if (idx === pivotIndex) bar.classList.add('pivot');
-            if (comparingIndices.includes(idx)) bar.classList.add('comparing');
-            
-            canvas.appendChild(bar);
-        });
-        
-        document.getElementById('lbl-comp').innerText = comparacoes;
-        document.getElementById('lbl-trocas').innerText = trocas;
-        document.getElementById('lbl-algo').innerText = algoritmoAtual === 'quicksort' ? 'Quick Sort' : 'Merge Sort';
-    }
-
-    function log(msg) {
-        const logBox = document.getElementById('log');
-        logBox.innerHTML += `<br>> ${msg}`;
-        logBox.scrollTop = logBox.scrollHeight;
-    }
-
-    function mudarAlgoritmo(algo) {
-        algoritmoAtual = algo;
-        reiniciar();
-        log(`Algoritmo alterado para ${algo === 'quicksort' ? 'Quick Sort' : 'Merge Sort'}.`);
-    }
-
-    function carregarCaso(tipo) {
-        if (tipo === 'comum') {
-            array = [45, 12, 78, 34, 23, 89, 10];
-            log("Carregado: Cenário Caso Comum.");
-        } else if (tipo === 'pior') {
-            // Pior caso para Quick Sort com pivô no início: lista já ordenada
-            array = [10, 20, 30, 40, 50, 60, 70];
-            log("Carregado: Pior Caso (Lista já ordenada -> O(n²) no Quick Sort).");
-        }
-        comparacoes = 0;
-        trocas = 0;
-        atualizarVisual();
-    }
-
-    function reiniciar() {
-        array = [...arrayOriginal];
-        comparacoes = 0;
-        trocas = 0;
-        atualizarVisual();
-        log("Simulador reiniciado.");
-    }
-
-    function executarPasso() {
-        // Exemplo didático de passo simulado para demonstração visual
-        comparacoes += 1;
-        trocas += 1;
-        log(`Executando passo de ordenação (${algoritmoAtual}). Comparações: ${comparacoes}`);
-        atualizarVisual(0, [1, 2]);
-    }
-
-    // Inicializar ao carregar
-    reiniciar();
-</script>
-
+<script src="app.js"></script>
 </body>
 </html>
