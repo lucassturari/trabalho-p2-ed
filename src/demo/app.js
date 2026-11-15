@@ -46,7 +46,7 @@ function carregarCaso(tipo) {
         log("Carregado: Cenário Caso Comum.");
     } else if (tipo === 'pior') {
         arrayOriginal = [10, 20, 30, 40, 50, 60, 70];
-        log("Carregado: Pior Caso (Lista já ordenada -> O(n²) no Quick Sort).");
+        log("Carregado: Pior Caso (Lista já ordenada).");
     }
     reiniciar();
 }
@@ -58,7 +58,7 @@ function reiniciar() {
     indicePasso = 0;
     gerarPassosSimulacao();
     atualizarVisual();
-    log("Simulador reiniciado com sucesso.");
+    log("Simulador reiniciado. Tudo zerado, pronto para começar.");
 }
 
 function gerarPassosSimulacao() {
@@ -68,24 +68,26 @@ function gerarPassosSimulacao() {
     
     for (let i = 0; i < n - 1; i++) {
         for (let j = 0; j < n - i - 1; j++) {
+            // Passo de comparação
             passosAnimacao.push({
                 arr: [...tempArray],
                 comparing: [j, j + 1],
                 pivot: algoritmoAtual === 'quicksort' ? 0 : -1,
-                msg: `Comparando elementos ${tempArray[j]} e ${tempArray[j+1]}`
+                tipoAcao: 'comparacao',
+                msg: `Comparando índices [${j}] e [${j+1}] (Valores: ${tempArray[j]} e ${tempArray[j+1]})`
             });
-            comparacoes++;
             
             if (tempArray[j] > tempArray[j + 1]) {
                 let aux = tempArray[j];
                 tempArray[j] = tempArray[j + 1];
                 tempArray[j + 1] = aux;
-                trocas++;
+                // Passo de troca
                 passosAnimacao.push({
                     arr: [...tempArray],
                     comparing: [j, j + 1],
                     pivot: -1,
-                    msg: `Troca realizada: ${tempArray[j]} <-> ${tempArray[j+1]}`
+                    tipoAcao: 'troca',
+                    msg: `Troca realizada! Elementos reorganizados.`
                 });
             }
         }
@@ -94,7 +96,8 @@ function gerarPassosSimulacao() {
         arr: [...tempArray],
         comparing: [],
         pivot: -1,
-        msg: "Execução finalizada para o cenário atual."
+        tipoAcao: 'fim',
+        msg: "Ordenação concluída com sucesso!"
     });
 }
 
@@ -102,11 +105,19 @@ function executarPasso() {
     if (indicePasso < passosAnimacao.length) {
         let passo = passosAnimacao[indicePasso];
         array = [...passo.arr];
+        
+        // Incrementa os contadores apenas quando o passo é executado na tela
+        if (passo.tipoAcao === 'comparacao') {
+            comparacoes++;
+        } else if (passo.tipoAcao === 'troca') {
+            trocas++;
+        }
+        
         log(passo.msg);
         atualizarVisual(passo.pivot, passo.comparing);
         indicePasso++;
     } else {
-        log("Simulação finalizada. Clique em 'Reiniciar' ou troque de caso para testar novamente.");
+        log("O array já está totalmente ordenado! Clique em Reiniciar.");
     }
 }
 
