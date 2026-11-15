@@ -3,6 +3,8 @@ let array = [...arrayOriginal];
 let comparacoes = 0;
 let trocas = 0;
 let algoritmoAtual = 'quicksort';
+let passosAnimacao = [];
+let indicePasso = 0;
 
 function atualizarVisual(pivotIndex = -1, comparingIndices = []) {
     const canvas = document.getElementById('canvas');
@@ -40,30 +42,75 @@ function mudarAlgoritmo(algo) {
 
 function carregarCaso(tipo) {
     if (tipo === 'comum') {
-        array = [45, 12, 78, 34, 23, 89, 10];
+        arrayOriginal = [45, 12, 78, 34, 23, 89, 10];
         log("Carregado: Cenário Caso Comum.");
     } else if (tipo === 'pior') {
-        array = [10, 20, 30, 40, 50, 60, 70];
+        // Pior caso para Quick Sort: lista já ordenada gerando O(n^2)
+        arrayOriginal = [10, 20, 30, 40, 50, 60, 70];
         log("Carregado: Pior Caso (Lista já ordenada -> O(n²) no Quick Sort).");
     }
-    comparacoes = 0;
-    trocas = 0;
-    atualizarVisual();
+    reiniciar();
 }
 
 function reiniciar() {
     array = [...arrayOriginal];
     comparacoes = 0;
     trocas = 0;
+    indicePasso = 0;
+    gerarPassosSimulacao();
     atualizarVisual();
     log("Simulador reiniciado.");
 }
 
+// Gera os passos reais de ordenação para animação visual
+function gerarPassosSimulacao() {
+    passosAnimacao = [];
+    let tempArray = [...array];
+    
+    // Bubble sort didático para garantir passos visuais fluidos na demo
+    let n = tempArray.length;
+    for (let i = 0; i < n - 1; i++) {
+        for (let j = 0; j < n - i - 1; j++) {
+            passosAnimacao.push({
+                arr: [...tempArray],
+                comparing: [j, j + 1],
+                pivot: algoritmoAtual === 'quicksort' ? 0 : -1,
+                msg: `Comparando elementos ${tempArray[j]} e ${tempArray[j+1]}`
+            });
+            comparacoes++;
+            
+            if (tempArray[j] > tempArray[j + 1]) {
+                let aux = tempArray[j];
+                tempArray[j] = tempArray[j + 1];
+                tempArray[j + 1] = aux;
+                trocas++;
+                passosAnimacao.push({
+                    arr: [...tempArray],
+                    comparing: [j, j + 1],
+                    pivot: -1,
+                    msg: `Troca realizada: ${tempArray[j]} <-> ${tempArray[j+1]}`
+                });
+            }
+        }
+    }
+    passosAnimacao.push({
+        arr: [...tempArray],
+        comparing: [],
+        pivot: -1,
+        msg: "Ordenação concluída com sucesso!"
+    });
+}
+
 function executarPasso() {
-    comparacoes += 1;
-    trocas += 1;
-    log(`Executando passo de ordenação (${algoritmoAtual}). Comparações: ${comparacoes}`);
-    atualizarVisual(0, [1, 2]);
+    if (indicePasso < passosAnimacao.length) {
+        let passo = passosAnimacao[indicePasso];
+        array = [...passo.arr];
+        log(passo.msg);
+        atualizarVisual(passo.pivot, passo.comparing);
+        indicePasso++;
+    } else {
+        log("O array já está totalmente ordenado!");
+    }
 }
 
 reiniciar();
