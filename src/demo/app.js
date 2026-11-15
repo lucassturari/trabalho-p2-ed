@@ -36,8 +36,8 @@ function log(msg) {
 
 function mudarAlgoritmo(algo) {
     algoritmoAtual = algo;
-    reiniciar();
     log(`Algoritmo alterado para ${algo === 'quicksort' ? 'Quick Sort' : 'Merge Sort'}.`);
+    reiniciar();
 }
 
 function carregarCaso(tipo) {
@@ -45,7 +45,6 @@ function carregarCaso(tipo) {
         arrayOriginal = [45, 12, 78, 34, 23, 89, 10];
         log("Carregado: Cenário Caso Comum.");
     } else if (tipo === 'pior') {
-        // Pior caso para Quick Sort: lista já ordenada gerando O(n^2)
         arrayOriginal = [10, 20, 30, 40, 50, 60, 70];
         log("Carregado: Pior Caso (Lista já ordenada -> O(n²) no Quick Sort).");
     }
@@ -62,13 +61,12 @@ function reiniciar() {
     log("Simulador reiniciado.");
 }
 
-// Gera os passos reais de ordenação para animação visual
 function gerarPassosSimulacao() {
     passosAnimacao = [];
     let tempArray = [...array];
-    
-    // Bubble sort didático para garantir passos visuais fluidos na demo
     let n = tempArray.length;
+    
+    // Simulação visual passo a passo
     for (let i = 0; i < n - 1; i++) {
         for (let j = 0; j < n - i - 1; j++) {
             passosAnimacao.push({
@@ -109,7 +107,7 @@ function executarPasso() {
         atualizarVisual(passo.pivot, passo.comparing);
         indicePasso++;
     } else {
-        log("O array já está totalmente ordenado!");
+        log("O array já está totalmente ordenado! Clique em Reiniciar ou escolha um cenário.");
     }
 }
 
