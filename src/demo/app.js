@@ -58,7 +58,7 @@ function reiniciar() {
     indicePasso = 0;
     gerarPassosSimulacao();
     atualizarVisual();
-    log("Simulador reiniciado.");
+    log("Simulador reiniciado com sucesso.");
 }
 
 function gerarPassosSimulacao() {
@@ -66,7 +66,6 @@ function gerarPassosSimulacao() {
     let tempArray = [...array];
     let n = tempArray.length;
     
-    // Simulação visual passo a passo
     for (let i = 0; i < n - 1; i++) {
         for (let j = 0; j < n - i - 1; j++) {
             passosAnimacao.push({
@@ -95,7 +94,7 @@ function gerarPassosSimulacao() {
         arr: [...tempArray],
         comparing: [],
         pivot: -1,
-        msg: "Ordenação concluída com sucesso!"
+        msg: "Execução finalizada para o cenário atual."
     });
 }
 
@@ -107,7 +106,7 @@ function executarPasso() {
         atualizarVisual(passo.pivot, passo.comparing);
         indicePasso++;
     } else {
-        log("O array já está totalmente ordenado! Clique em Reiniciar ou escolha um cenário.");
+        log("Simulação finalizada. Clique em 'Reiniciar' ou troque de caso para testar novamente.");
     }
 }
 
