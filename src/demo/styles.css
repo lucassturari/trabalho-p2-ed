@@ -1,0 +1,14 @@
+body { font-family: Arial, sans-serif; background-color: #f4f6f9; margin: 0; padding: 20px; color: #333; }
+.container { max-width: 900px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+h1 { color: #0284c7; font-size: 24px; text-align: center; }
+.controls { display: flex; gap: 10px; justify-content: center; margin: 20px 0; flex-wrap: wrap; }
+button { padding: 10px 15px; border: none; border-radius: 5px; background: #0284c7; color: white; cursor: pointer; font-weight: bold; }
+button:hover { background: #0369a1; }
+button.secondary { background: #64748b; }
+button.secondary:hover { background: #475569; }
+.metrics { display: flex; justify-content: space-around; background: #e0f2fe; padding: 10px; border-radius: 5px; font-weight: bold; margin-bottom: 20px; }
+.canvas-container { display: flex; align-items: flex-end; justify-content: center; height: 250px; border-bottom: 3px solid #333; gap: 6px; padding: 10px; background: #f8fafc; margin-bottom: 20px; }
+.bar { width: 35px; background: #38bdf8; display: flex; align-items: flex-end; justify-content: center; color: white; font-size: 12px; font-weight: bold; border-radius: 4px 4px 0 0; transition: height 0.3s; }
+.bar.pivot { background: #f59e0b; }
+.bar.comparing { background: #ef4444; }
+.log-box { background: #1e293b; color: #38bdf8; padding: 15px; border-radius: 5px; height: 100px; overflow-y: auto; font-family: monospace; font-size: 14px; }
