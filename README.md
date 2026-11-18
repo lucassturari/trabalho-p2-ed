@@ -17,12 +17,16 @@
 
 O **Merge Sort** utiliza a abordagem de *Dividir para Conquistar*, dividindo o array recursivamente ao meio até restar sublistas de um elemento, e depois mesclando-as de forma ordenada. Já o **Quick Sort** escolhe um elemento como pivô, particiona os elementos menores à esquerda e maiores à direita, e aplica a recursão.
 
-### Tabela de Complexidade (Tempo e Espaço)
-| Algoritmo | Melhor Caso | Caso Médio | Pior Caso | Por que o pior caso ocorre? |
-| :--- | :--- | :--- | :--- | :--- |
-| **Merge Sort** | $O(n \log n)$ | $O(n \log n)$ | $O(n \log n)$ | A divisão ao meio é sempre balanceada, independente da ordem inicial. |
-| **Quick Sort** | $O(n \log n)$ | $O(n \log n)$ | $O(n^2)$ | Ocorre quando o pivô escolhido é sempre o menor ou maior elemento (ex: lista já ordenada com pivô fixo no início). |
+### Tabela de Complexidade e Justificativas Detalhadas
 
+| Algoritmo | Caso | Complexidade | Justificativa Técnica |
+| :--- | :--- | :--- | :--- |
+| **Merge Sort** | **Melhor Caso** | $O(n \log n)$ | Independente da ordem inicial dos dados, a lista é sempre dividida rigorosamente ao meio até o nível base, exigindo divisões e mesclagens consistentes. |
+| **Merge Sort** | **Caso Médio** | $O(n \log n)$ | O comportamento estrutural da divisão e da intercalação permanece o mesmo para distribuições aleatórias de dados. |
+| **Merge Sort** | **Pior Caso** | $O(n \log n)$ | A estabilidade do algoritmo garante que nem mesmo em cenários desfavoráveis o desempenho piore, mantendo sempre o teto logarítmico. |
+| **Quick Sort** | **Melhor Caso** | $O(n \log n)$ | Ocorre quando o pivô escolhido consegue particionar o array exatamente (ou muito próximo de) ao meio a cada chamada recursiva, gerando sublistas balanceadas. |
+| **Quick Sort** | **Caso Médio** | $O(n \log n)$ | Em listas com distribuições aleatórias comuns, o pivô divide o array em partes razoavelmente equilibradas na maioria das vezes. |
+| **Quick Sort** | **Pior Caso** | $O(n^2)$ | Ocorre quando o pivô escolhido é sempre o menor ou maior elemento da sublista (ex: lista já ordenada utilizando pivô fixo no primeiro elemento), gerando partições extremamente desbalanceadas onde uma sublista fica vazia e a outra tem tamanho $n-1$. |
 ---
 
 ## 🤖 Diário de Engenharia com IA
