@@ -9,7 +9,7 @@
 ---
 
 ## 🔗 Link do Vídeo Explicativo
-> 
+> https://youtu.be/PKggGXTCZKU
 
 ---
 
