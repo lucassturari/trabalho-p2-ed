@@ -9,7 +9,7 @@
 ---
 
 ## 🔗 Link do Vídeo Explicativo
-> https://youtu.be/PKggGXTCZKU
+- https://youtu.be/PKggGXTCZKU
 
 ---
 
@@ -27,14 +27,29 @@ O **Merge Sort** utiliza a abordagem de *Dividir para Conquistar*, dividindo o a
 | **Quick Sort** | **Melhor Caso** | $O(n \log n)$ | Ocorre quando o pivô escolhido consegue particionar o array exatamente (ou muito próximo de) ao meio a cada chamada recursiva, gerando sublistas balanceadas. |
 | **Quick Sort** | **Caso Médio** | $O(n \log n)$ | Em listas com distribuições aleatórias comuns, o pivô divide o array em partes razoavelmente equilibradas na maioria das vezes. |
 | **Quick Sort** | **Pior Caso** | $O(n^2)$ | Ocorre quando o pivô escolhido é sempre o menor ou maior elemento da sublista (ex: lista já ordenada utilizando pivô fixo no primeiro elemento), gerando partições extremamente desbalanceadas onde uma sublista fica vazia e a outra tem tamanho $n-1$. |
+
 ---
 
 ## 🤖 Diário de Engenharia com IA
 
 - **Ferramenta Utilizada:** Google Gemini como assistente de desenvolvimento e estudo.
-- **Top 3 Prompts Utilizados:**
+- **Prompts Utilizados:**
   1. *"Como implementar o Merge Sort e o Quick Sort em Python puro contando comparações e trocas?"*
   2. *"Como estruturar um simulador visual interativo em HTML/JS autocontido para algoritmos de ordenação?"*
   3. *"Quais são os principais cenários de teste obrigatórios para validar o pior caso do Quick Sort?"*
 - **Ajuste / Correção Manual:** 
   - Ajuste na lógica do simulador em JavaScript para garantir que o destaque visual (cores dos pivôs e barras comparadas) sincronize corretamente com o passo a passo da interface web.
+
+---
+
+## 📊 Análise Crítica dos Resultados
+
+1. **Desempenho Prático vs. Teoria Assintótica:**
+   - O **Merge Sort** confirmou sua estabilidade matemática de $O(n  \log n)$ em todos os cenários testados, mostrando que o custo de divisão e intercalação (`_merge`) é totalmente previsível independentemente da ordem inicial do vetor.
+   - O **Quick Sort** evidenciou na prática o seu calcanhar de Aquiles: enquanto manteve ótimo desempenho médio  $O(n \log n)$ em listas aleatórias, degradou severamente para $O(n^2)$ em listas já ordenadas devido à escolha fixa do pivô inicial, gerando partições totalmente desbalanceadas.
+
+2. **Validação da Instrumentação de Métricas:**
+   - A utilização da classe de instrumentação (`EstatisticasOrdenacao`) passada por referência nas chamadas recursivas permitiu mapear com precisão o custo real de execução, comprovando quantitativamente a diferença de comportamento estrutural entre os algoritmos.
+
+3. **Reflexão sobre a Engenharia com Assistência de IA:**
+   - O uso da IA acelerou a estruturação inicial da lógica e do simulador. No entanto, a supervisão humana foi essencial para validar a exatidão matemática dos contadores estatísticos, corrigir a sincronização visual da interface e garantir o rigor teórico exigido no projeto.
